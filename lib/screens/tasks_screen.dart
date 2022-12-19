@@ -17,39 +17,41 @@ class _State extends State<TasksScreen> {
       appBar: AppBar(
         leading: Container(),
         title: const Text('Startup-One: Tarefas'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/form').then((task) {
-                  setState(() {
-                    tasksList.add(task as Task);                  
-                  });
-                });
-              },
-            icon: const Icon(Icons.add),
+      ),
+      body: Column(
+        children: [
+          // Wrap(
+          //   children: _buildChoices()),
+          Expanded(
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: _buildListTasks(),
+              )
           )
         ],
       ),
-      body: ListView(
-        children: const [
-          Task('Aprender Dart',
-              'assets/images/dart.png',
-              3),
-          Task('Aprender Flutter',
-              'assets/images/flutter.jpg',
-              5),
-          Task('Aprender manusear Android Studio',
-              'assets/images/android.png',
-              2),
-        ],
-      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/form').then((task) {
+            setState(() {
+              tasksList.add(task as Task);
+            });
+          });
+        },
         child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
       ),
     );
+  }
+
+  List<Widget> _buildListTasks() {
+    return tasksList
+        // .where((task) => task.selected)
+        .map((task) => Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Task(task.name, task.image, task.difficult)))
+        .toList();
   }
 }
