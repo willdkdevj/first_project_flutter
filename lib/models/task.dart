@@ -6,8 +6,9 @@ class Task extends StatefulWidget {
   final String name;
   final String image;
   final int difficult;
+  bool selected = false;
 
-  const Task(this.name, this.image, this.difficult, {Key? key}) : super(key: key);
+  Task(this.name, this.image, this.difficult, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
