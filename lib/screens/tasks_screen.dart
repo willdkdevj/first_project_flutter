@@ -9,12 +9,26 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _State extends State<TasksScreen> {
+  List<Task> tasksList = [];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Container(),
         title: const Text('Startup-One: Tarefas'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/form').then((task) {
+                  setState(() {
+                    tasksList.add(task as Task);                  
+                  });
+                });
+              },
+            icon: const Icon(Icons.add),
+          )
+        ],
       ),
       body: ListView(
         children: const [

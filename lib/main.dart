@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proj_alura_one/screens/form_screen.dart';
 import 'package:proj_alura_one/screens/tasks_screen.dart';
 
 void main() {
@@ -12,11 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Startup One',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TasksScreen(),
+      initialRoute: '/',
+      routes: {
+        '/' : (context) => TasksScreen(),
+        '/form' : (context) => TaskFormWidget()
+      },
     );
   }
 }
