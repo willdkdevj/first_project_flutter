@@ -5,6 +5,8 @@ class TaskFormWidget extends StatelessWidget {
   TaskFormWidget({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
+  final _formDifficult = GlobalKey<FormFieldState>();
+
   final _nameController = TextEditingController();
   final _imageController = TextEditingController();
   final _difficultController = TextEditingController();
@@ -42,21 +44,31 @@ class TaskFormWidget extends StatelessWidget {
                 ),
                 validator: (value) {
                   if(value == null || value.isEmpty) {
-                    return 'Insira um caminho para a imagem';
+                    return 'Informe o caminho para a imagem';
                   }
                   return null;
                 },
               ),
               TextFormField(
-                controller: _nameController,
+                key: _formDifficult,
+                controller: _difficultController,
                 decoration: const InputDecoration(
                     labelText : 'Dificuldade',
-                    hintText: 'Valor válido para dificuldade (Inteiro)',
+                    hintText: 'Valor de 1 a 5',
                 ),
                 validator: (value) {
                   if(value == null || value.isEmpty) {
                     return 'Insira um válido para a dificuldade';
                   }
+                  try {
+                    int? result = int.tryParse(value.toString());
+                    if (result! > 5) {
+                      return 'Informe um valor de 1 a 5';
+                    }
+                  } on Exception{
+                    return 'Informe um número válido para a dificuldade';
+                  }
+
                   return null;
                 },
               ),
@@ -65,8 +77,14 @@ class TaskFormWidget extends StatelessWidget {
                 child: ElevatedButton(
                   child: const Text("Salvar"),
                   onPressed: () {
+                    _formDifficult.currentState?.validate();
                     if(_formKey.currentState!.validate()){
-                      final task = Task(_nameController.text, _imageController.text, _difficultController as int);
+                      final String nome = _nameController.text;
+                      final String imagem = _imageController.text;
+                      final int? dificuldade = int.tryParse(_difficultController.text);
+
+                      final task = Task(nome, imagem, dificuldade!);
+
                       Navigator.pop(context, task);
                     }
                   },
