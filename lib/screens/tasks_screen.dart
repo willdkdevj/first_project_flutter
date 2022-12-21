@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proj_alura_one/models/task.dart';
+import 'package:proj_flutter_one/models/task.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -50,7 +50,7 @@ class _State extends State<TasksScreen> {
     return tasksList
         // .where((task) => task.selected)
         .map((task) => Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 8),
           child: Task(task.name, task.image, task.difficult)))
         .toList();
   }

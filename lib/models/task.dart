@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:proj_alura_one/components/difficult_stars.dart';
+import 'package:proj_flutter_one/components/difficult_stars.dart';
 
 class Task extends StatefulWidget {
   final String name;
@@ -44,7 +44,7 @@ class _TaskState extends State<Task> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.black26,
+                          color: Colors.cyan,
                           borderRadius: BorderRadius.circular(5),
                         ),
                         width: 72,
@@ -58,7 +58,7 @@ class _TaskState extends State<Task> {
                         ),
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
@@ -66,7 +66,7 @@ class _TaskState extends State<Task> {
                               child: Text(
                                 widget.name,
                                 style: const TextStyle(fontSize: 14),
-                                overflow: TextOverflow.ellipsis,
+                                // overflow: TextOverflow.ellipsis,
                               )),
                           DifficultStars(level: widget.difficult),
                         ],
@@ -87,7 +87,7 @@ class _TaskState extends State<Task> {
                                 Icon(Icons.arrow_drop_up),
                                 Text(
                                   'UP',
-                                  style: TextStyle(fontSize: 9),
+                                  style: TextStyle(fontSize: 10),
                                 )
                               ],
                             )),

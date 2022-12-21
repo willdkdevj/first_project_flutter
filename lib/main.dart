@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proj_alura_one/screens/form_screen.dart';
-import 'package:proj_alura_one/screens/tasks_screen.dart';
+import 'package:proj_flutter_one/screens/form_screen.dart';
+import 'package:proj_flutter_one/screens/tasks_screen.dart';
 
 void main() {
   runApp(const MyApp());

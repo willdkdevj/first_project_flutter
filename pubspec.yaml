@@ -1,4 +1,4 @@
-name: proj_alura_one
+name: proj_flutter_one
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -71,7 +71,7 @@ flutter:
     - assets/images/idealizar.jpg
     - assets/images/desk-research.jpg
     - assets/images/indicadores.jpg
-    - assets/images/pesquisa_persona.png
+    - assets/images/persona.jpg
     - assets/images/definir_problema.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
