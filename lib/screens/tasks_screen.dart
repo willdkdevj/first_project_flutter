@@ -34,39 +34,11 @@ class _TasksScreenState extends State<TasksScreen> {
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Container(
-                        child: ListTile(
-                            leading: Padding(
-                              padding: EdgeInsets.all(12),
-                                child: Task(
-                                snapshot.data![index].name,
-                                snapshot.data![index].image,
-                                snapshot.data![index].difficult)),
-                            onLongPress: () async {
-                              var result = await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) {
-                                      return TaskFormWidget(
-                                          widget.dao, snapshot.data![index],
-                                          key: widget.key);
-                                    }
-                                ),
-                              );
-                              if (result) {
-                                setState(() {});
-                              }
-                            }),
-                      ),
-                    );
-
-                    // return Padding(
-                    //     padding: const EdgeInsets.only(bottom: 8),
-                    //     child: Task(
-                    //         snapshot.data![index].name,
-                    //         snapshot.data![index].image,
-                    //         snapshot.data![index].difficult));
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Task(
+                            snapshot.data![index].name,
+                            snapshot.data![index].image,
+                            snapshot.data![index].difficult));
                   },)
                     : const Center(
                   child: Text('Não há tarefas para o projeto'),
