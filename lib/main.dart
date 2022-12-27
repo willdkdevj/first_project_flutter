@@ -1,27 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:proj_flutter_one/db/database.dart';
 import 'package:proj_flutter_one/screens/form_screen.dart';
 import 'package:proj_flutter_one/screens/tasks_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+      MyApp(
+        dao: await $FloorAppDatabase.databaseBuilder("app_database.db").build(),
+      ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppDatabase dao;
+  const MyApp({key, required this.dao}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Startup One',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        brightness: Brightness.light,
       ),
-      initialRoute: '/',
-      routes: {
-        '/' : (context) => TasksScreen(),
-        '/form' : (context) => TaskFormWidget()
-      },
+      themeMode: ThemeMode.light,
+      home: TasksScreen(dao: dao),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
+      // initialRoute: '/',
+      // routes: {
+      //   '/' : (context) => const TasksScreen(),
+      //   '/form' : (context) => TaskFormWidget()
+      // },
     );
   }
 }

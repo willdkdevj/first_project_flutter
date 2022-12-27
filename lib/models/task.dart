@@ -1,7 +1,11 @@
 
+import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:proj_flutter_one/components/difficult_stars.dart';
 
+import '../db/database.dart';
+
+// ignore: must_be_immutable
 class Task extends StatefulWidget {
   final String name;
   final String image;

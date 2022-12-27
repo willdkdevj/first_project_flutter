@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:proj_flutter_one/dao/entity/task_entity.dart';
 import 'package:proj_flutter_one/models/task.dart';
 
+import '../db/database.dart';
+import 'form_screen.dart';
+
 class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
+  final AppDatabase dao;
+
+  const TasksScreen({key, required this.dao}) : super(key: key);
 
   @override
-  State<TasksScreen> createState() => _State();
+  State<TasksScreen> createState() => _TasksScreenState();
 }
 
-class _State extends State<TasksScreen> {
-  List<Task> tasksList = [];
-  
+class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,23 +24,73 @@ class _State extends State<TasksScreen> {
       ),
       body: Column(
         children: [
-          // Wrap(
-          //   children: _buildChoices()),
           Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: _buildListTasks(),
-              )
-          )
+            child: FutureBuilder<List<TaskEntity>>(
+              future: widget.dao.repositoryDaoTask.getAll(),
+              builder: (context, snapshot) {
+                return snapshot.hasData
+                    ? ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Container(
+                        child: ListTile(
+                            leading: Padding(
+                              padding: EdgeInsets.all(12),
+                                child: Task(
+                                snapshot.data![index].name,
+                                snapshot.data![index].image,
+                                snapshot.data![index].difficult)),
+                            onLongPress: () async {
+                              var result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) {
+                                      return TaskFormWidget(
+                                          widget.dao, snapshot.data![index],
+                                          key: widget.key);
+                                    }
+                                ),
+                              );
+                              if (result) {
+                                setState(() {});
+                              }
+                            }),
+                      ),
+                    );
+
+                    // return Padding(
+                    //     padding: const EdgeInsets.only(bottom: 8),
+                    //     child: Task(
+                    //         snapshot.data![index].name,
+                    //         snapshot.data![index].image,
+                    //         snapshot.data![index].difficult));
+                  },)
+                    : const Center(
+                  child: Text('Não há tarefas para o projeto'),
+                );
+              },
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/form').then((task) {
+        onPressed: () async {
+          var result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return TaskFormWidget(
+                widget.dao, null, key: widget.key);
+            }
+            ),
+          );
+          if (result) {
             setState(() {
-              tasksList.add(task as Task);
+
             });
-          });
+          }
         },
         child: const Icon(
           Icons.add,
@@ -44,14 +98,5 @@ class _State extends State<TasksScreen> {
         ),
       ),
     );
-  }
-
-  List<Widget> _buildListTasks() {
-    return tasksList
-        // .where((task) => task.selected)
-        .map((task) => Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Task(task.name, task.image, task.difficult)))
-        .toList();
   }
 }

@@ -1,54 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:proj_flutter_one/models/task.dart';
+import 'package:proj_flutter_one/dao/entity/task_entity.dart';
 
-class TaskFormWidget extends StatelessWidget {
-  TaskFormWidget({Key? key}) : super(key: key);
+import '../db/database.dart';
 
+class TaskFormWidget extends StatefulWidget {
+  final AppDatabase? db;
+  final TaskEntity? task;
+  TaskFormWidget(this.db, this.task, {required key}) : super(key: key);
+
+  @override
+  State<TaskFormWidget> createState() => _TaskFormWidgetState();
+}
+
+class _TaskFormWidgetState extends State<TaskFormWidget> {
   final _formKey = GlobalKey<FormState>();
   final _formDifficult = GlobalKey<FormFieldState>();
 
-  final _nameController = TextEditingController();
-  final _imageController = TextEditingController();
-  final _difficultController = TextEditingController();
-  final title = const Text("Nova Tarefa da Startup");
+  final title = const Text("Nova Tarefa");
 
+  var _nameController = TextEditingController();
+  var _imageController = TextEditingController();
+  var _difficultController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: widget.task != null ? widget.task!.name : '');
+    _imageController = TextEditingController(text: widget.task != null ? widget.task!.image : '');
+    _difficultController = TextEditingController(text: widget.task != null ? widget.task!.difficult.toString() : '');
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: title,),
+      appBar: AppBar(
+        title: title,
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left),
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                widget.db?.repositoryDaoTask.deleteTask(widget.task!);
+                Navigator.pop(context, true);
+              })
+        ],
+      ),
       body: Padding(
-        padding: EdgeInsets.all(10),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFormField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText : 'Nome',
-                  hintText: 'Nome da tarefa',
+          padding: const EdgeInsets.all(10),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Nome',
+                    hintText: 'Nome da tarefa',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Insira um nome para a tarefa';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if(value == null || value.isEmpty) {
-                    return 'Insira um nome para a tarefa';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _imageController,
-                decoration: const InputDecoration(
-                    labelText : 'Imagem',
+                TextFormField(
+                  controller: _imageController,
+                  decoration: const InputDecoration(
+                    labelText: 'Imagem',
                     hintText: 'Caminho da imagem',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Informe o caminho para a imagem';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if(value == null || value.isEmpty) {
-                    return 'Informe o caminho para a imagem';
-                  }
-                  return null;
-                },
-              ),
               TextFormField(
                 key: _formDifficult,
                 controller: _difficultController,
@@ -59,41 +92,51 @@ class TaskFormWidget extends StatelessWidget {
                 validator: (value) {
                   if(value == null || value.isEmpty) {
                     return 'Insira um válido para a dificuldade';
-                  }
-                  try {
-                    int? result = int.tryParse(value.toString());
-                    if (result! > 5) {
-                      return 'Informe um valor de 1 a 5';
                     }
-                  } on Exception{
-                    return 'Informe um número válido para a dificuldade';
-                  }
-
-                  return null;
-                },
-              ),
-              Padding(
-                padding: EdgeInsets.only(top:8),
-                child: ElevatedButton(
-                  child: const Text("Salvar"),
-                  onPressed: () {
-                    _formDifficult.currentState?.validate();
-                    if(_formKey.currentState!.validate()){
-                      final String nome = _nameController.text;
-                      final String imagem = _imageController.text;
-                      final int? dificuldade = int.tryParse(_difficultController.text);
-
-                      final task = Task(nome, imagem, dificuldade!);
-
-                      Navigator.pop(context, task);
+                    try {
+                      int? result = int.tryParse(value.toString());
+                      if (result! > 5) {
+                        return 'Informe um valor de 1 a 5';
+                      }
+                    } on Exception {
+                      return 'Informe um número válido para a dificuldade';
                     }
+
+                    return null;
                   },
                 ),
-              )
-            ],
-          ),
-        )
-      ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: ElevatedButton(
+                      child: const Text("Salvar"),
+                      onPressed: () {
+                        _formDifficult.currentState?.validate();
+                        if (_formKey.currentState!.validate()) {
+                          final String nome = _nameController.text;
+                          final String imagem = _imageController.text;
+                          final int? dificuldade =
+                              int.tryParse(_difficultController.text);
+
+                          var task = TaskEntity(
+                            createdAt: DateTime.now().toUtc().toString(),
+                            nome,
+                            imagem,
+                            dificuldade!,
+                          );
+
+                          if (task != null) {
+                            widget.db?.repositoryDaoTask.updateTask(task);
+                          } else {
+                            widget.db?.repositoryDaoTask.insertTask(task);
+                          }
+
+                          Navigator.pop(context, true);
+                        }
+                      }),
+                )
+              ],
+            ),
+          )),
     );
   }
 }
