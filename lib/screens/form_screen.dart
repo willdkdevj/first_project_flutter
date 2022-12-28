@@ -124,7 +124,7 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
                             dificuldade!,
                           );
 
-                          if (task != null) {
+                          if (task.id != null) {
                             widget.db?.repositoryDaoTask.updateTask(task);
                           } else {
                             widget.db?.repositoryDaoTask.insertTask(task);

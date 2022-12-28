@@ -19,7 +19,7 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(),
+        leading: SizedBox(),
         title: const Text('Startup-One: Tarefas'),
       ),
       body: Column(
@@ -33,13 +33,31 @@ class _TasksScreenState extends State<TasksScreen> {
                   itemCount: snapshot.data!.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
-                    return Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Task(
-                            snapshot.data![index].name,
-                            snapshot.data![index].image,
-                            snapshot.data![index].difficult));
-                  },)
+                    return ListTile(
+                        title: Padding(
+                            padding: EdgeInsets.all(0.1),
+                            child: Task(
+                                snapshot.data![index].name,
+                                snapshot.data![index].image,
+                                snapshot.data![index].difficult)),
+                        onLongPress: () async {
+                          var result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) {
+                                  return TaskFormWidget(
+                                      widget.dao, snapshot.data![index],
+                                      key: widget.key);
+                                }
+                            ),
+                          );
+                          if (result) {
+                            setState(() {});
+                          }
+                        }
+                    );
+                  },
+                )
                     : const Center(
                   child: Text('Não há tarefas para o projeto'),
                 );
