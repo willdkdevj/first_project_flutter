@@ -161,6 +161,7 @@ class _$RepositoryDaoTask extends RepositoryDaoTask {
     return _queryAdapter.query('SELECT * FROM Tasks WHERE id = ?1',
         mapper: (Map<String, Object?> row) => TaskEntity(row['name'] as String,
             row['image'] as String, row['difficult'] as int,
+            id: row['id'] as int?,
             createdAt: row['createdAt'] as String?,
             updateAt: row['updateAt'] as String?,
             selected: (row['selected'] as int) != 0),
@@ -172,6 +173,7 @@ class _$RepositoryDaoTask extends RepositoryDaoTask {
     return _queryAdapter.queryList('SELECT * FROM Tasks',
         mapper: (Map<String, Object?> row) => TaskEntity(row['name'] as String,
             row['image'] as String, row['difficult'] as int,
+            id: row['id'] as int?,
             createdAt: row['createdAt'] as String?,
             updateAt: row['updateAt'] as String?,
             selected: (row['selected'] as int) != 0));

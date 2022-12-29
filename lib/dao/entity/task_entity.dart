@@ -1,6 +1,6 @@
 import 'package:floor/floor.dart';
 
-@Entity(tableName: 'Tasks')
+@Entity(tableName: "Tasks")
 class TaskEntity {
   @PrimaryKey(autoGenerate: true)
   int? id;
@@ -13,6 +13,6 @@ class TaskEntity {
   bool selected = false;
 
   TaskEntity(this.name, this.image, this.difficult,
-      {this.createdAt, this.updateAt, this.selected = false})
+      {this.id, this.createdAt, this.updateAt, this.selected = false})
       :super();
 }

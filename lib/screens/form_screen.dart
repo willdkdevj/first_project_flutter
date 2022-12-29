@@ -6,7 +6,7 @@ import '../db/database.dart';
 class TaskFormWidget extends StatefulWidget {
   final AppDatabase? db;
   final TaskEntity? task;
-  TaskFormWidget(this.db, this.task, {required key}) : super(key: key);
+  const TaskFormWidget(this.db, this.task, {required key}) : super(key: key);
 
   @override
   State<TaskFormWidget> createState() => _TaskFormWidgetState();
@@ -18,6 +18,8 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
 
   final title = const Text("Nova Tarefa");
 
+  var _idController = 0;
+  var _createdAtController = '';
   var _nameController = TextEditingController();
   var _imageController = TextEditingController();
   var _difficultController = TextEditingController();
@@ -25,6 +27,8 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
   @override
   void initState() {
     super.initState();
+    _idController = (widget.task != null ? widget.task!.id : 0)!;
+    _createdAtController = (widget.task != null && widget.task?.createdAt != null ? widget.task?.createdAt : '')!;
     _nameController = TextEditingController(text: widget.task != null ? widget.task!.name : '');
     _imageController = TextEditingController(text: widget.task != null ? widget.task!.image : '');
     _difficultController = TextEditingController(text: widget.task != null ? widget.task!.difficult.toString() : '');
@@ -41,12 +45,13 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
           },
         ),
         actions: <Widget>[
-          IconButton(
+          validateIdTask() ? IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
                 widget.db?.repositoryDaoTask.deleteTask(widget.task!);
                 Navigator.pop(context, true);
               })
+              : Container(),
         ],
       ),
       body: Padding(
@@ -108,7 +113,7 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: ElevatedButton(
-                      child: const Text("Salvar"),
+                      child: validateIdTask() ? const Text("Atualizar") : const Text("Salvar"),
                       onPressed: () {
                         _formDifficult.currentState?.validate();
                         if (_formKey.currentState!.validate()) {
@@ -117,18 +122,7 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
                           final int? dificuldade =
                               int.tryParse(_difficultController.text);
 
-                          var task = TaskEntity(
-                            createdAt: DateTime.now().toUtc().toString(),
-                            nome,
-                            imagem,
-                            dificuldade!,
-                          );
-
-                          if (task.id != null) {
-                            widget.db?.repositoryDaoTask.updateTask(task);
-                          } else {
-                            widget.db?.repositoryDaoTask.insertTask(task);
-                          }
+                          checkedSaveOrUpdate(nome, imagem, dificuldade);
 
                           Navigator.pop(context, true);
                         }
@@ -138,5 +132,29 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
             ),
           )),
     );
+  }
+
+  bool validateIdTask() => _idController > 0;
+
+  checkedSaveOrUpdate(String nome, String imagem, int? dificuldade) {
+    if (validateIdTask()) {
+      var task = TaskEntity(
+        id: _idController,
+        createdAt: _createdAtController,
+        updateAt: DateTime.now().toUtc().toString(),
+        nome,
+        imagem,
+        dificuldade!,
+      );
+      widget.db?.repositoryDaoTask.updateTask(task);
+    } else {
+      var task = TaskEntity(
+        createdAt: DateTime.now().toUtc().toString(),
+        nome,
+        imagem,
+        dificuldade!,
+      );
+      widget.db?.repositoryDaoTask.insertTask(task);
+    }
   }
 }
