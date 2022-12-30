@@ -84,14 +84,20 @@ Já o *body*, como a lista de entidades retornadas pelo banco de dados que terá
 ## O Componente Tarefa (Task)
 Como já mencionado, o Flutter nos permite estruturar Widget com outros widgets e partir deste injetá-los a outro, já que ele é um widget. É este conceito que é utilizado com o Widget ***Task*** que e um StatefulWidget também, já que necessita atualizar seu estado com os dados que estão sendo aplicados a componentes e realizar a passagem de dados a outro Widget. Abaixo segue como está estruturado este componente.
 
-<img align="center" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
+<img align="center" width="600" height="380" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
 
 Abaixo segue o descritivo de como estão estes componentes:
 *   Stack - é o componente principal que "empilha" os widgets que o compõem;
 *   Container (Azul) - é o widget que é a base do cartão que compõem a tarefa;
 *   Container (Branco) - é o widget que compõem quase por completo o widget, mas também é base para outros widgets;
-*       Container (ClipRRect) - é o widget que tem como "filha" o componente ClipRRect que permite trabalhar com objetos externos, este manipula imagem que está relacionada a tarefa;
-*       Column (SizedBox, Row) - é um widget que também tem a função de empilhar widgets, mas apresenta mais recursos para parametriza-los, nele existe mais duas filhas, que são o SizedBox que possuí um componente Text que permite a inserção da descrição da tarefa, e o componente Row, que é um widget que alinha os componentes de modo horizontal, onde são implementados widgets do tipo Icon;
+    *   Container (ClipRRect) - é o widget que tem como "filha" o componente ClipRRect que permite trabalhar com objetos externos, este manipula imagem que está relacionada a tarefa;
+    *   Column (SizedBox, Row) - é um widget que também tem a função de empilhar widgets, mas apresenta mais recursos para parametriza-los, nele existe mais duas filhas, que são o SizedBox que possuí um componente Text que permite a inserção da descrição da tarefa, e o componente Row, que é um widget que alinha os componentes de modo horizontal, onde são implementados widgets do tipo Icon;
+    *   SizedBox (ElevedButton) - é um widget do tipo container, mas que não tem tantas funcionalidades como o widget de mesmo nome, nele está inserido o widget ElevedButton que é do tipo botão para implementação da lógica para atribuir a execução da tarefa conforme sua dificuldade;
+*   Row - é o widget que alinha os componentes de modo horizontal, na qual possuem dois componentes;
+    *   Padding (LinearProgressIndicator) - é um widget que permite inserir uma margem a ser aplicada para alinhar o componente, como filha ele possuí o componente LinearProgressIndicator que mostra uma barra de progressão;
+    *   Padding (Text) - é um widget de alinhamento de componente, que tem um componente filho de texto (Text).
+
+
 
 
 
