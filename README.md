@@ -88,7 +88,7 @@ A *screen de formulário* é um widget ***StetefulWidget*** por utilizarmos vali
 
 <img align="center" width="300" height="600" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/valida_tipo.png">
 
-## O Componente Tarefa (Task)
+## O Widget Tarefa (Task)
 Como já mencionado, o Flutter nos permite estruturar Widget com outros widgets e partir deste injetá-los a outro, já que ele é um widget. É este conceito que é utilizado com o Widget ***Task*** que e um StatefulWidget também, já que necessita atualizar seu estado com os dados que estão sendo aplicados a componentes e realizar a passagem de dados a outro Widget. Abaixo segue como está estruturado este componente.
 
 <img align="center" width="700" height="400" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
