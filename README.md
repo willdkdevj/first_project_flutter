@@ -1,4 +1,4 @@
-## Aplicativo para lista de tarefas - Projeto_Flutter_One
+# Aplicativo para lista de tarefas - Projeto_Flutter_One
 > Aplicativo móvel desenvolvido para apresentação de trabalho de conclusão de curso - Mobile Flutter
 
 [![Flutter Badge](https://img.shields.io/badge/-Flutter-000?style=flat-square&logo=Flutter&logoColor=white&link=https://flutter.dev/)](https://flutter.dev/)
@@ -22,12 +22,18 @@ Os widgets do Flutter permite estruturar componentes para montaem avançada de a
 As *screens* que são as páginas (ou telas) são desenvolvidas com o layout do framework [*Material Design*](https://m3.material.io/), que possui um designer pré-modulado que possui diretrizes adaptáveis, compomentes e ferramentas a fim de estrutura-las. Já o widget **Scaffold**, que é um destes componentes, permite definir outros widgets do Material Design Os padrões mais universais e de alto nível são os padrões de arquitetura . Os desenvolvedores podem implementar esses padrões em praticamente qualquer idioma. Ao contrário de outros padrões, eles podem ser usados ​​para projetar a arquitetura de um aplicativo
 Todas as screens desenvolvidas para o aplicativo foram utilizada o componente *Scaffold*, onde utilizamos os dois parâmetros mínimos deste widget, que são o *AppBar*, que é um componente que pode ser alocado na parte superior ou inferior, e *Body*, onde pode ser inserido outros componentes ao centro da screen, na qual consome maior parte, em sua maioria.
 
+#### Persistência de Dados (Floor)
+Para possuir a lista das tarefas, mesmo após encerrar o aplicativo é necessário utilizar uma função de **persistência de dados**. Para este app, mesmo sendo um aplicativo para uso de dático, será utilizado uma fonte local para obter os dados utilizando o **Floor**.
+O *Floor* fornece uma camada de abstração *SQLite*, permitindo mapear automaticamente os objetos instanciados em memória e as linhas da database, enquanto fornece controle total do banco de dados com o uso de SQL.
+
+
 #### Screen Principal (Lista de Tarefas)
-A *screen principal* é a tela inicial do aplicativo, na qual lista as tarefas cadastradas permitindo atualizar seu nível conforme a dificuldade. Conforme a dificuldade da tarefa é aplicável um calculo para determintar o quanto de trabalho será necessário para realizá-la. Além disso, quando esta não existem tarefas é apresentada uma mensagem sobre seu estado.
+A *screen principal* é a tela inicial do aplicativo, na qual é um widget ***StatefulWidget*** pois é utilizado algumas mudanças de estados dos componentes que precisam ser atualizados. A lista as tarefas cadastradas permitindo atualizar seu nível conforme a dificuldade. Conforme a dificuldade da tarefa é aplicável um calculo para determintar o quanto de trabalho será necessário para realizá-la. Além disso, quando esta não existem tarefas é apresentada uma mensagem sobre seu estado.
 
 ![Main Screen](https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png)
 
-O parâmetro AppBar é constituído de
+O parâmetro AppBar é a barra que está na parte superior do widget, na qual apresenta um componente **Text** para ser utilizado como título (Title).
+Já o *body*, como a lista de entidades retornadas pelo banco de dados que terá atualização constante, desta forma é utilizado o widget *FutureBuilder* a fim de obter o estado da *database* (base de dados) a fim de obter seu estado.
 
 
 ## Aplicação do Design Patterns no Projeto
