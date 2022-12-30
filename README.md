@@ -4,7 +4,7 @@
 [![Flutter Badge](https://img.shields.io/badge/-Flutter-000?style=flat-square&logo=Flutter&logoColor=white&link=https://flutter.dev/)](https://flutter.dev/)
 [![Dart Badge](https://img.shields.io/badge/-Dart-blue?style=flat-square&logo=Dart&logoColor=white&link=https://dart.dev/)](https://dart.dev/)
 
-<img align="right" width="200" height="120" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
+<img align="right" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
 
 ## Descrição da Aplicação
 A aplicação móvel desenvolvido para a listagem de tarefas a serem realizadas para o projeto Startup One (FIAP), na qual possui uma lista que as ordena de modo vertical e um formulário para informar sua descrição, caminho da imagem e grau de dificuldade a fim de ser avaliada pelo seu proprietário.
@@ -54,7 +54,7 @@ A interface *IRepositoryDao* tem as funções **CRUD** onde são aplicadas suas 
 ### Criando a Base de Dados
 Depois de criada a classe responsável pelo relacinamento da aplicação com a base de dados, na qual precisará de um interpretador do objeto do aplicativo com o objeto do banco de dados, que é a entidade. Além da criação na camada de gerenciamento das funcionalidades para realização dos comandos para manipulação da base de dados utilizando a linguagem SQL, foi criada a **Classe abstrata** AppDatabase que estende de ***FloorDatabase*** a fim de mapear as classes que serão gerenciadas com entidades, implementado no arquivo **database.dart**.
 
-```java
+```dart
 part 'database.g.dart';
 
 @Database(version: 1, entities: [TaskEntity])
@@ -74,7 +74,7 @@ Todas as screens desenvolvidas para o aplicativo foram utilizada o componente *S
 ### Screen Principal (Lista de Tarefas)
 A *screen principal* é a tela inicial do aplicativo, na qual é um widget ***StatefulWidget*** pois é utilizado algumas mudanças de estados dos componentes que precisam ser atualizados. A lista as tarefas cadastradas permitindo atualizar seu nível conforme a dificuldade. Conforme a dificuldade da tarefa é aplicável um calculo para determintar o quanto de trabalho será necessário para realizá-la. Além disso, quando esta não existem tarefas é apresentada uma mensagem sobre seu estado.
 
-<img align="center" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/tela1_semtarefa.png">
+<img align="center" width="300" height="600" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/tela1_semtarefa.png">
 
 O parâmetro AppBar é a barra que está na parte superior do widget, na qual apresenta um componente **Text** para ser utilizado como título (Title).
 Já o *body*, como a lista de entidades retornadas pelo banco de dados que terá atualização constante, desta forma é utilizado o widget *FutureBuilder* a fim de obter o estado da *database* (base de dados) a fim de obter seu estado.
@@ -82,11 +82,11 @@ Já o *body*, como a lista de entidades retornadas pelo banco de dados que terá
 ### Screen Form (Formulário)
 Para a inserção de tarefas é necessário um documento para formalizar seu entrada, desta forma, foi implementado um widget que tem esta funcionalidade. O Widget ***Form*** que permite inserir componentes que possuem funções para receber dados e valida-los.
 
-<img align="center" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/form_preenchido.png">
+<img align="center" width="300" height="600" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/form_preenchido.png">
 
 A *screen de formulário* é um widget ***StetefulWidget*** por utilizarmos validações para verificar o estado da database, nele são inseridos compoenentes a fim de validados e também verificado quais os componentes a serem apresentados no formulario conforme a operação CRUD a ser realizada.
 
-<img align="center" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/valida_tipo.png">
+<img align="center" width="300" height="600" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/valida_tipo.png">
 
 ## O Componente Tarefa (Task)
 Como já mencionado, o Flutter nos permite estruturar Widget com outros widgets e partir deste injetá-los a outro, já que ele é um widget. É este conceito que é utilizado com o Widget ***Task*** que e um StatefulWidget também, já que necessita atualizar seu estado com os dados que estão sendo aplicados a componentes e realizar a passagem de dados a outro Widget. Abaixo segue como está estruturado este componente.
