@@ -1,4 +1,4 @@
-# Aplicativo para lista de tarefas - Projeto_Flutter_One
+# Aplicativo para Lista de Tarefas - Projeto_Flutter_One
 > Aplicativo móvel desenvolvido para apresentação de trabalho de conclusão de curso - Mobile Flutter
 
 [![Flutter Badge](https://img.shields.io/badge/-Flutter-000?style=flat-square&logo=Flutter&logoColor=white&link=https://flutter.dev/)](https://flutter.dev/)
