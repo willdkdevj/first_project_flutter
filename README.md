@@ -84,7 +84,7 @@ Já o *body*, como a lista de entidades retornadas pelo banco de dados que terá
 ## O Componente Tarefa (Task)
 Como já mencionado, o Flutter nos permite estruturar Widget com outros widgets e partir deste injetá-los a outro, já que ele é um widget. É este conceito que é utilizado com o Widget ***Task*** que e um StatefulWidget também, já que necessita atualizar seu estado com os dados que estão sendo aplicados a componentes e realizar a passagem de dados a outro Widget. Abaixo segue como está estruturado este componente.
 
-<img align="center" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
+<img align="center" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
 
 Abaixo segue o descritivo de como estão estes componentes:
 *   Stack - é o componente que "empilha" os widgets;
