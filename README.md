@@ -87,7 +87,12 @@ Como já mencionado, o Flutter nos permite estruturar Widget com outros widgets 
 <img align="center" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
 
 Abaixo segue o descritivo de como estão estes componentes:
-*   Stack - é o componente que "empilha" os widgets;
+*   Stack - é o componente principal que "empilha" os widgets que o compõem;
+*   Container (Azul) - é o widget que é a base do cartão que compõem a tarefa;
+*   Container (Branco) - é o widget que compõem quase por completo o widget, mas também é base para outros widgets;
+*       Container (ClipRRect) - é o widget que tem como "filha" o componente ClipRRect que permite trabalhar com objetos externos, este manipula imagem que está relacionada a tarefa;
+*       Column (SizedBox, Row) - é um widget que também tem a função de empilhar widgets, mas apresenta mais recursos para parametriza-los, nele existe mais duas filhas, que são o SizedBox que possuí um componente Text que permite a inserção da descrição da tarefa, e o componente Row, que é um widget que alinha os componentes de modo horizontal, onde são implementados widgets do tipo Icon;
+
 
 
 
