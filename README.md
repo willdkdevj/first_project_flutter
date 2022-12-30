@@ -107,7 +107,7 @@ Abaixo segue o descritivo de como estão estes componentes:
 
 Abaixo é apresentado como fica o widget Task após sua implementação na lista.
 
-<img align="center" width="370" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/tarefas.png">
+<img align="center" width="350" height="280" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/tarefas.png">
 
 ## Agradecimentos
 Obrigado por ter acompanhado aos meus esforços no desenvolvimento de um aplicativo móvel utilizando o Flutter :octocat:
