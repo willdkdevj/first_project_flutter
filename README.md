@@ -4,7 +4,7 @@
 [![Flutter Badge](https://img.shields.io/badge/-Flutter-000?style=flat-square&logo=Flutter&logoColor=white&link=https://flutter.dev/)](https://flutter.dev/)
 [![Dart Badge](https://img.shields.io/badge/-Dart-blue?style=flat-square&logo=Dart&logoColor=white&link=https://dart.dev/)](https://dart.dev/)
 
-<img align="right" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
+<img align="right" width="200" height="120" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
 
 ## Descrição da Aplicação
 A aplicação móvel desenvolvido para a listagem de tarefas a serem realizadas para o projeto Startup One (FIAP), na qual possui uma lista que as ordena de modo vertical e um formulário para informar sua descrição, caminho da imagem e grau de dificuldade a fim de ser avaliada pelo seu proprietário.
@@ -75,15 +75,21 @@ Todas as screens desenvolvidas para o aplicativo foram utilizada o componente *S
 #### Screen Principal (Lista de Tarefas)
 A *screen principal* é a tela inicial do aplicativo, na qual é um widget ***StatefulWidget*** pois é utilizado algumas mudanças de estados dos componentes que precisam ser atualizados. A lista as tarefas cadastradas permitindo atualizar seu nível conforme a dificuldade. Conforme a dificuldade da tarefa é aplicável um calculo para determintar o quanto de trabalho será necessário para realizá-la. Além disso, quando esta não existem tarefas é apresentada uma mensagem sobre seu estado.
 
-<img align="middle" width="200" height="500" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/lista_tarefas.png">
+<img align="center" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/tela1_semtarefa.png">
 
 O parâmetro AppBar é a barra que está na parte superior do widget, na qual apresenta um componente **Text** para ser utilizado como título (Title).
 Já o *body*, como a lista de entidades retornadas pelo banco de dados que terá atualização constante, desta forma é utilizado o widget *FutureBuilder* a fim de obter o estado da *database* (base de dados) a fim de obter seu estado.
 
 
 ## O Componente Tarefa (Task)
-Cada uma destas categorias possuem seus próprios mecanismos, que são sub-categorias, que possuem funcionalidades distintas conforme a estrutura de código a ser implementada. 
-Neste projeto, eu utilizei somente a **Categoria Comportamental** a fim de deixar o código mais coeso e simples, na qual o primeiro a ser utilizado foi a sub-categoria **Strategy**.
+Como já mencionado, o Flutter nos permite estruturar Widget com outros widgets e partir deste injetá-los a outro, já que ele é um widget. É este conceito que é utilizado com o Widget ***Task*** que e um StatefulWidget também, já que necessita atualizar seu estado com os dados que estão sendo aplicados a componentes e realizar a passagem de dados a outro Widget. Abaixo segue como está estruturado este componente.
+
+<img align="center" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/strutucture_model.png">
+
+Abaixo segue o descritivo de como estão estes componentes:
+*   Stack - é o componente que "empilha" os widgets;
+
+
 
 
 
