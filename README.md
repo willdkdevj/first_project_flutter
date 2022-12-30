@@ -4,10 +4,12 @@
 [![Flutter Badge](https://img.shields.io/badge/-Flutter-000?style=flat-square&logo=Flutter&logoColor=white&link=https://flutter.dev/)](https://flutter.dev/)
 [![Dart Badge](https://img.shields.io/badge/-Dart-blue?style=flat-square&logo=Dart&logoColor=white&link=https://dart.dev/)](https://dart.dev/)
 
-<img align="right" width="300" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
+<img align="right" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
 
 ## Descrição da Aplicação
 A aplicação móvel desenvolvido para a listagem de tarefas a serem realizadas para o projeto Startup One (FIAP), na qual possui uma lista que as ordena de modo vertical e um formulário para informar sua descrição, caminho da imagem e grau de dificuldade a fim de ser avaliada pelo seu proprietário.
+
+![Lista de Tarefas](https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/lista_tarefas.png)
 
 ## Sobre o uso do Widgets (Flutter)
 Antes de descrever o que são ***Widgets***, vamos entender o que é o framework **Flutter**. O Flutter foi desenvolvido pela Google para criação de aplicações móveis multiplataformas utilizando uma única base de código, baseada na linguagem **Dart**. 
@@ -37,15 +39,11 @@ No cenário em que ela foi aplicada foi no contexto de vários impostos, como IC
 Sempre que uma nova funcionalidade for implementada, o ideal é que possamos criar código novo e editar o mínimo possível de código já existente. Este é um dos principais pontos do princípio Aberto-Fechado *(Open-Closed Principle)* do **SOLID**. Ao editar código existente, podemos acabar quebrando funcionalidades já implementadas e funcionais.
 Desta forma, seguindo este conceitos podemos colocar os cálculos (regras) encapsulados em métodos em classes distintas, uma para cada imposto.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Agradecimentos
+Obrigado por ter acompanhado aos meus esforços no desenvolvimento de um aplicativo móvel utilizando o Flutter :octocat:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Como diria um velho mestre:
+> *"Cedo ou tarde, você vai aprender, assim como eu aprendi, que existe uma diferença entre CONHECER o caminho e TRILHAR o caminho."*
+>
+> *Morpheus - The Matrix*
