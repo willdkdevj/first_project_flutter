@@ -9,7 +9,7 @@
 ## Descrição da Aplicação
 A aplicação móvel desenvolvido para a listagem de tarefas a serem realizadas para o projeto Startup One (FIAP), na qual possui uma lista que as ordena de modo vertical e um formulário para informar sua descrição, caminho da imagem e grau de dificuldade a fim de ser avaliada pelo seu proprietário.
 
-<img align="middle" width="200" height="450" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/lista_tarefas.png">
+<img align="middle" width="300" height="600" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/lista_tarefas.png">
 
 ## Sobre o uso do Widgets (Flutter)
 Antes de descrever o que são ***Widgets***, vamos entender o que é o framework **Flutter**. O Flutter foi desenvolvido pela Google para criação de aplicações móveis multiplataformas utilizando uma única base de código, baseada na linguagem **Dart**.
