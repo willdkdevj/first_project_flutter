@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proj_flutter_one/db/database.dart';
-import 'package:proj_flutter_one/screens/form_screen.dart';
 import 'package:proj_flutter_one/screens/tasks_screen.dart';
 
 main() async {
@@ -27,14 +26,6 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       home: TasksScreen(dao: dao),
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      // ),
-      // initialRoute: '/',
-      // routes: {
-      //   '/' : (context) => const TasksScreen(),
-      //   '/form' : (context) => TaskFormWidget()
-      // },
     );
   }
 }

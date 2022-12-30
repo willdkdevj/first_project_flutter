@@ -1,9 +1,6 @@
 
-import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:proj_flutter_one/components/difficult_stars.dart';
-
-import '../db/database.dart';
 
 // ignore: must_be_immutable
 class Task extends StatefulWidget {
@@ -70,7 +67,6 @@ class _TaskState extends State<Task> {
                               child: Text(
                                 widget.name,
                                 style: const TextStyle(fontSize: 14),
-                                // overflow: TextOverflow.ellipsis,
                               )),
                           DifficultStars(level: widget.difficult),
                         ],

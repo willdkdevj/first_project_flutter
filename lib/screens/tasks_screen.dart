@@ -19,7 +19,7 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(),
+        leading: const SizedBox(),
         title: const Text('Startup-One: Tarefas'),
       ),
       body: Column(
@@ -28,14 +28,14 @@ class _TasksScreenState extends State<TasksScreen> {
             child: FutureBuilder<List<TaskEntity>>(
               future: widget.dao.repositoryDaoTask.getAll(),
               builder: (context, snapshot) {
-                return snapshot.hasData
+                return snapshot.data!.isNotEmpty // hasData
                     ? ListView.builder(
                   itemCount: snapshot.data!.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     return ListTile(
                         title: Padding(
-                            padding: EdgeInsets.all(0.1),
+                            padding: const EdgeInsets.all(0.1),
                             child: Task(
                                 snapshot.data![index].name,
                                 snapshot.data![index].image,

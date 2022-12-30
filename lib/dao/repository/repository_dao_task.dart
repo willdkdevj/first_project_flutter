@@ -1,6 +1,6 @@
 import 'package:floor/floor.dart';
 import 'package:proj_flutter_one/dao/entity/task_entity.dart';
-import 'package:proj_flutter_one/repository/interface/repository_dao_interface.dart';
+import 'package:proj_flutter_one/dao/repository/interface/repository_dao_interface.dart';
 
 @dao
 abstract class RepositoryDaoTask extends IRepositoryDaoInterface<TaskEntity>{
