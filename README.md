@@ -7,7 +7,7 @@
 <img align="right" width="400" height="250" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/flutter_dart.png">
 
 ## Descrição da Aplicação
-A aplicação móvel desenvolvido para a listagem de tarefas a serem realizadas para o projeto Startup One (FIAP), na qual possui uma lista que as ordena de modo vertical e um formulário para informar sua descrição, caminho da imagem e grau de dificuldade a fim de ser avaliada pelo seu proprietário.
+A função principal da aplicação móvel desenvolvida é a listagem de tarefas a serem realizadas para o projeto Startup One (FIAP), na qual possui a característica de ordenar de modo vertical e a apresentação de um formulário para informar sua descrição, caminho da imagem e o grau de dificuldade a fim de ser avaliada pelo seu proprietário.
 
 <img align="middle" width="300" height="600" src="https://github.com/willdkdevj/first_project_flutter/blob/master/assets/doc/lista_tarefas.png">
 
