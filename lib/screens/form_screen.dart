@@ -16,8 +16,6 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
   final _formKey = GlobalKey<FormState>();
   final _formDifficult = GlobalKey<FormFieldState>();
 
-  final title = const Text("Nova Tarefa");
-
   var _idController = 0;
   var _createdAtController = '';
   var _nameController = TextEditingController();
@@ -37,7 +35,7 @@ class _TaskFormWidgetState extends State<TaskFormWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: title,
+        title: widget.task != null ? const Text("Editar Tarefa") : const Text("Nova Tarefa"),
         leading: IconButton(
           icon: const Icon(Icons.chevron_left),
           onPressed: () {
